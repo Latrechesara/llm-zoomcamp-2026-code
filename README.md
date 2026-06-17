@@ -9,19 +9,19 @@ This repository serves as a live ledger of my engineering implementations, core 
 
 ---
 
-## 🛠️ Technology Stack & Orchestration
+## Technology Stack & Orchestration
 
 Throughout this curriculum, I transition from foundational mathematical concepts to fully deployed full-stack pipelines using these technologies:
 
-⚡ **Languages & Environments:** ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)
+ **Languages & Environments:** ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)
 ![uv](https://img.shields.io/badge/uv-Fast%20Package%20Manager-DE5C2E?style=flat-square)
 
-🧠 **LLMs & Frameworks:**
+ **LLMs & Frameworks:**
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-412991?style=flat-square&logo=openai&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-API-F5511E?style=flat-square)
 ![ToyAIKit](https://img.shields.io/badge/Framework-ToyAIKit-blueviolet?style=flat-square)
 
-🗄️ **Vector Storage & Infrastructure:**
+ **Vector Storage & Infrastructure:**
 ![Kestra](https://img.shields.io/badge/Orchestration-Kestra-2F1B4E?style=flat-square&logo=kestra)
 ![Grafana](https://img.shields.io/badge/Monitoring-Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
 ![SQLite](https://img.shields.io/badge/Storage-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
