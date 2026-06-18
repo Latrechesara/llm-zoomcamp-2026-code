@@ -5,8 +5,7 @@ This folder contains my solutions and engineering implementations for the Module
 ## 👥 Homework Deliverables
 
 * **`1-Agentic_rag_homework_Homework.ipynb`**: The primary Jupyter Notebook containing the full execution, token tracking, and final evaluation loops.
-* **`rag_helper_hw.py`**: A modularized helper script containing custom parsing mechanics, chunking configurations, and retrieval functions used to support the notebook.
-
+* **`rag_helper_hw.py`**: A modularized helper script 
 ---
 
 ##  Key Implementations & Concepts Covered
