@@ -35,7 +35,6 @@ class RAGBase:
         self.prompt_template = prompt_template
         self.model = model
 
-    # 1. Added 'self' and switched to 'self.index' and 'self.course'
     def search(self, question, course=None):
         
         
@@ -45,7 +44,6 @@ class RAGBase:
             num_results=5
         )
 
-    # 2. Added 'self' so it can be called internally
     def build_context(self, search_results):
         lines = []
         for doc in search_results:
@@ -54,7 +52,6 @@ class RAGBase:
             lines.append("")
         return "\n".join(lines).strip()
 
-    # 3. Added 'self', called 'self.build_context', and used 'self.prompt_template'
     def build_prompt(self, query, search_results):
         context = self.build_context(search_results)
         prompt = self.prompt_template.format(
@@ -63,7 +60,6 @@ class RAGBase:
         )
         return prompt.strip()
 
-    # 4. Added 'self' and replaced global 'client' with instance 'self.llm_client'
     def llm(self, instructions, user_prompt, model=None):
             if model is None:
                 model = self.model
@@ -77,7 +73,6 @@ class RAGBase:
                 model=model,
                 messages=message_history
             )
-            # MODIFY: Return the full response object instead of just the text content
             return response
         
     def rag(self, query, model=None):
@@ -87,12 +82,10 @@ class RAGBase:
         search_results = self.search(query)
         prompt = self.build_prompt(query, search_results)
         
-        # MODIFY: This now receives the complete response object
         response = self.llm(self.instructions, prompt, model=model)
         
-        # Extract the fields we need
         answer = response.choices[0].message.content
-        usage = response.usage  # Contains prompt_tokens, completion_tokens, total_tokens
+        usage = response.usage  
         
         # Return both as a tuple
         return answer, usage
