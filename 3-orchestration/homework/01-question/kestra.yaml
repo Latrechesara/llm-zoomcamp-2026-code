@@ -1,0 +1,20 @@
+id: nyc_taxi_data_to_bigquery
+namespace: dev
+description: "Loads NYC taxi data from a CSV file into a BigQuery table."
+tasks:
+  - id: download
+    type: io.kestra.plugin.core.http.Download
+    uri: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.csv
+    saveAs: nyc_taxi_data.csv
+  - id: load_to_bigquery
+    type: io.kestra.plugin.gcp.bigquery.Load
+    from: "{{ outputs.download.uri }}"
+    destinationTable: "your_gcp_project.your_bigquery_dataset.nyc_taxi_data"
+    format: CSV
+    autodetect: true
+    csvOptions:
+      skipLeadingRows: 1
+    createDisposition: CREATE_IF_NEEDED
+    writeDisposition: WRITE_TRUNCATE
+    # Replace with your GCP Project ID
+    projectId: "your_gcp_project_id"

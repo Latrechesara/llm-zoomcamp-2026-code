@@ -1,0 +1,62 @@
+id: load_nyc_taxi_csv_to_bigquery
+namespace: data.eng
+
+inputs:
+  - id: csv_url
+    type: STRING
+    defaults: "https://raw.githubusercontent.com/DataTalksClub/nyc-tlc-data/master/trip%20data/yellow_tripdata_2019-01.csv"
+  - id: gcp_project_id
+    type: STRING
+  - id: bq_dataset
+    type: STRING
+    defaults: nyc_taxi
+  - id: bq_table
+    type: STRING
+    defaults: yellow_trips
+
+tasks:
+  - id: download_csv
+    type: io.kestra.plugin.core.http.Download
+    uri: "{{ inputs.csv_url }}"
+
+  - id: create_table
+    type: io.kestra.plugin.gcp.bigquery.CreateTable
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT_JSON') }}"
+    projectId: "{{ inputs.gcp_project_id }}"
+    dataset: "{{ inputs.bq_dataset }}"
+    table: "{{ inputs.bq_table }}"
+    tableDefinition:
+      type: TABLE
+      schema:
+        fields:
+          - {name: VendorID, type: INT64}
+          - {name: tpep_pickup_datetime, type: TIMESTAMP}
+          - {name: tpep_dropoff_datetime, type: TIMESTAMP}
+          - {name: passenger_count, type: INT64}
+          - {name: trip_distance, type: FLOAT64}
+          - {name: RatecodeID, type: INT64}
+          - {name: store_and_fwd_flag, type: STRING}
+          - {name: PULocationID, type: INT64}
+          - {name: DOLocationID, type: INT64}
+          - {name: payment_type, type: INT64}
+          - {name: fare_amount, type: FLOAT64}
+          - {name: extra, type: FLOAT64}
+          - {name: mta_tax, type: FLOAT64}
+          - {name: tip_amount, type: FLOAT64}
+          - {name: tolls_amount, type: FLOAT64}
+          - {name: improvement_surcharge, type: FLOAT64}
+          - {name: total_amount, type: FLOAT64}
+          - {name: congestion_surcharge, type: FLOAT64}
+
+  - id: load_csv_to_bigquery
+    type: io.kestra.plugin.gcp.bigquery.Load
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT_JSON') }}"
+    from: "{{ outputs.download_csv.uri }}"
+    destinationTable: "{{ inputs.gcp_project_id }}.{{ inputs.bq_dataset }}.{{ inputs.bq_table }}"
+    format: CSV
+    writeDisposition: WRITE_TRUNCATE
+    autodetect: false
+    csvOptions:
+      skipLeadingRows: 1
+      fieldDelimiter: ","
+      allowQuotedNewLines: true
