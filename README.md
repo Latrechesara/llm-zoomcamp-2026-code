@@ -36,7 +36,7 @@ Below is the directory map linking to my distinct technical implementations and 
 | :--- | :--- | :--- | :--- |
 | **01. Agentic RAG** | Document ingestion, text chunking parsing, manual function-calling evaluation loops, and autonomous agent tracking using minimalistic frameworks. | Python, OpenAI SDK, Groq API, ToyAIKit | [`/1-Agentic_Rag`](./1-Agentic_Rag/) |
 | **02. Vector Search** | Embedding generation, metric spaces (Cosine/L2 similarity), index scaling, and retrieval hyperparameter fine-tuning. | Elasticsearch / Qdrant | [`/2-Vector-search`](./2-Vector-search/) |
-| **03. Orchestration** | Developing automated document processing pipelines, data synchronization, and pipeline scheduling systems. | Kestra, Postgres | *[Coming Soon]* |
+| **03. Orchestration** | Developing automated document processing pipelines, data synchronization, and pipeline scheduling systems. | Kestra, Postgres |  [`/3-orchestration`](./3-orchestration/) |
 | **04. Evaluation** | RAG evaluation mechanics, RAGAS frameworks, generation metrics (faithfulness, answer relevance), and automated testing suites. | Python, LLM-as-a-Judge | *[Coming Soon]* |
 | **05. Monitoring** | Production logging, tracking drift, monitoring latency, user feedback loops, and live dashboards. | Grafana, Prometheus | *[Coming Soon]* |
 
